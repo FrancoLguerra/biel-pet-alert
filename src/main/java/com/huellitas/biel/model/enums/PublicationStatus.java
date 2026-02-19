@@ -1,4 +1,4 @@
-package com.huellitas.biel.model;
+package com.huellitas.biel.model.enums;
 
 public enum PublicationStatus {
     ACTIVE,

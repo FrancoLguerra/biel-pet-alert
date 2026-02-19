@@ -1,12 +1,11 @@
 package com.huellitas.biel.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import com.huellitas.biel.model.enums.PublicationStatus;
+import com.huellitas.biel.model.enums.PublicationType;
+
 import jakarta.persistence.*;
 
 
@@ -14,10 +13,12 @@ import jakarta.persistence.*;
 
 
 @Entity
+@Table(name = "publications")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 
 
 public class Publication {
@@ -26,26 +27,25 @@ public class Publication {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-
     private PublicationType type;
+
+    @Enumerated(EnumType.STRING)
+    private PublicationStatus status;
+   
+    @Column(length = 1000)
+    private String description;
+    
     private String petName;
     private String species;
     private String breed;
     private String color;
-     @Column(length = 1000)
-    private String description;
-
-    private LocalDate date;
-
+    private LocalDateTime createdAt;
     private String neighborhood;
     private String location;
-
     private String imagenUrl;
+    private String contactPhone;
 
-    @Enumerated(EnumType.STRING)
-    private PublicationStatus status;
-
-    @ManyToOne
+       @ManyToOne
     private User user;
     
 }
