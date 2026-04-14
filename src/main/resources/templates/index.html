@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huellitas a casa</title>
+</head>
+<body>
+    <h1>Bienvenido a Huellitas a casa</h1>
+    <p>Tu plataforma para encontrar mascotas perdidas, reportar mascotas encontradas y facilitar la adopción.</p>
+
+    <nav>
+        <ul>
+            <form th:action="@{/publications}" method="get">
+    <button type="submit">Ver publicaciones</button>
+</form>
+            <li><a href="/publications/new">Crear publicación</a></li>
+        </ul>
+    </nav>
+    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Estoy en edit</h1>
+    <form th:object="${publication}" method="post">
+        <div class="mb-3">
+            <label>Tipo</label>
+            <select class="form-control" th:field="*{type}">
+                <option value="LOST">Perdido</option>
+                <option value="FOUND">Encontrado</option>
+                <option value="ADOPTION">Adopción</option>
+            </select>
+        </div>
+        <div>
+            <label>Status</label>
+            <select class="form-control" th:field="*{status}">
+                <option value="ACTIVE">Activo</option>
+                <option value="INACTIVE">Inactivo</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+    
+</body>
+</html>

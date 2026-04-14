@@ -6,9 +6,14 @@ import org.springframework.stereotype.Service;
 import com.huellitas.biel.model.Publication;
 import com.huellitas.biel.model.enums.PublicationStatus;
 
+import jakarta.validation.Valid;
+
 
 public interface PublicationService {
     Publication save(Publication publication);
     List<Publication> findActivePublications();
+    void update(Publication publication);
+    void delete(Long id);
+	Publication findById(Long id);
     
 }

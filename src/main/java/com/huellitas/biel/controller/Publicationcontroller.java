@@ -27,17 +27,53 @@ public class PublicationController {
         model.addAttribute("publication", new Publication());
         model.addAttribute("types", PublicationType.values());
         model.addAttribute("statuses", PublicationStatus.values());
+         System.out.println("CREATEEEE");
         return "publications/create";
     }
-    @GetMapping("/publications/create")
-public String createForm(Model model) {
-    model.addAttribute("publication", new Publication());
-    return "publications/create";
-}
+
 
     // Guardar publicación
-    @PostMapping("/save")
+    @PostMapping
     public String savePublication(
+            @Valid @ModelAttribute Publication publication,
+            BindingResult result,
+            Model model) {
+
+        if (result.hasErrors()) {
+             System.out.println("HAY ERRORES");
+            model.addAttribute("types", PublicationType.values());
+            model.addAttribute("statuses", PublicationStatus.values());
+            return "publications/create";
+        }
+
+        publication.setCreatedAt(LocalDateTime.now());
+     
+        publicationService.save(publication);
+
+        return "redirect:/publications";
+    }
+    @GetMapping
+public String listPublications(Model model) {
+    model.addAttribute("publications", publicationService.findActivePublications());
+    System.out.println("LISTAAAAA");
+    return "publications/list";
+}
+
+    @GetMapping("/put/{id}")
+    public String showEditForm(@PathVariable Long id, Model model) {
+        Publication publication = publicationService.findById(id);
+        if (publication == null) {
+            return "redirect:/publications";
+        }
+        model.addAttribute("publication", publication);
+        model.addAttribute("types", PublicationType.values());
+        model.addAttribute("statuses", PublicationStatus.values());
+        return "publications/edit";
+    }
+
+    @PostMapping("/put/{id}")
+    public String updatePublication(
+            @PathVariable Long id,
             @Valid @ModelAttribute Publication publication,
             BindingResult result,
             Model model) {
@@ -45,17 +81,19 @@ public String createForm(Model model) {
         if (result.hasErrors()) {
             model.addAttribute("types", PublicationType.values());
             model.addAttribute("statuses", PublicationStatus.values());
-            return "publications/create";
+            return "publications/edit";
         }
 
-        publication.setCreatedAt(LocalDateTime.now());
-        publicationService.save(publication);
+        publication.setId(id);
+        publicationService.update(publication);
 
         return "redirect:/publications";
     }
-    @GetMapping("/publications")
-public String listPublications(Model model) {
-    model.addAttribute("publications", publicationService.findAll());
-    return "publications/list";
-}
+
+    @GetMapping("/delete/{id}")
+    public String deletePublication(@PathVariable Long id) {
+        publicationService.delete(id);
+        return "redirect:/publications";
+    }
+
 }

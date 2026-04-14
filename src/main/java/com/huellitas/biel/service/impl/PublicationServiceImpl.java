@@ -29,4 +29,26 @@ public class PublicationServiceImpl implements PublicationService {
         return publicationRepository.findBystatus(PublicationStatus.ACTIVE);
     }
     
+    @SuppressWarnings("null")
+    @Override
+    public void update(Publication publication) {
+        publicationRepository.save(publication);
+    }   
+
+    @SuppressWarnings("null")
+    @Override
+    public void delete(Long id) {
+        Publication publication = publicationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Publication not found"));
+        publication.setStatus(PublicationStatus.INACTIVE);
+        publicationRepository.save(publication);
+    }
+    
+    @SuppressWarnings("null")
+    @Override
+    public Publication findById(Long id) {
+        return publicationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Publication not found"));
+    }
+    
 }
