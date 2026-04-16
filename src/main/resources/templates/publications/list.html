@@ -50,10 +50,16 @@
                         <strong>Raza:</strong>
                         <span th:text="${pub.breed}"></span><br>
 
-                        <strong>Barrio:</strong>
-                        <span th:text="${pub.neighborhood}"></span>
                     </p>
 
+                    <iframe
+                        width="100%"
+                        height="200"
+                        style="border:0"
+                        loading="lazy"
+                        allowfullscreen
+                        th:src="'https://www.google.com/maps?q=' + ${pub.latitude} + ',' + ${pub.longitude} + '&output=embed'">
+                    </iframe>
                     <a th:href="@{/publications/{id}(id=${pub.id})}"
                        class="btn btn-outline-primary btn-sm">
                         Ver detalle

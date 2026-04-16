@@ -49,6 +49,8 @@ public class Publication {
     private String neighborhood;
     private String location;
     private String imagenUrl;
+    private Double latitude;
+    private Double longitude;
 
      @NotBlank(message = "El teléfono es obligatorio")
     private String contactPhone;

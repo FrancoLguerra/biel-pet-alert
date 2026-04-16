@@ -81,11 +81,13 @@ public String listPublications(Model model) {
         if (result.hasErrors()) {
             model.addAttribute("types", PublicationType.values());
             model.addAttribute("statuses", PublicationStatus.values());
+            System.out.println("UPDATEEEEE HAY ERRORES");
             return "publications/edit";
         }
 
         publication.setId(id);
         publicationService.update(publication);
+        System.out.println("UPDATEEEEE");
 
         return "redirect:/publications";
     }

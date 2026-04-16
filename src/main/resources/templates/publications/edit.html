@@ -7,7 +7,8 @@
 </head>
 <body>
     <h1>Estoy en edit</h1>
-    <form th:object="${publication}" method="post">
+     <form th:action="@{/publications/put/{id}(id=${publication.id})}" th:object="${publication}" method="post">
+
         <div class="mb-3">
             <label>Tipo</label>
             <select class="form-control" th:field="*{type}">
@@ -23,7 +24,56 @@
                 <option value="INACTIVE">Inactivo</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar</button>
+        
+
+        <div class="mb-3">
+            <label>Nombre de la mascota</label>
+            <input type="text" class="form-control" th:field="*{petName}">
+        </div>
+
+        <div class="mb-3">
+            <label>Especie</label>
+            <input type="text" class="form-control" th:field="*{species}">
+        </div>
+
+        <div class="mb-3">
+            <label>Raza</label>
+            <input type="text" class="form-control" th:field="*{breed}">
+        </div>
+
+        <div class="mb-3">
+            <label>Color</label>
+            <input type="text" class="form-control" th:field="*{color}">
+        </div>
+
+        <div class="mb-3">
+            <label>Barrio</label>
+            <input type="text" class="form-control" th:field="*{neighborhood}">
+        </div>
+
+        <div class="mb-3">
+            <label>Ubicación exacta</label>
+            <input type="text" class="form-control" th:field="*{location}">
+        </div>
+
+        <div class="mb-3">
+            <label>Descripción</label>
+            <textarea class="form-control" th:field="*{description}" rows="4"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>URL Imagen</label>
+            <input type="text" class="form-control" th:field="*{imagenUrl}">
+        </div>
+
+        <div class="mb-3">
+            <label>Teléfono de contacto</label>
+            <input type="text" class="form-control" th:field="*{contactPhone}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/publications}" class="btn btn-secondary">Cancelar</a>
+
     </form>
     
 </body>
