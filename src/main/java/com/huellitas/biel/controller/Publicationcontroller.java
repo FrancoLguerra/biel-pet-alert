@@ -58,6 +58,15 @@ public String listPublications(Model model) {
     System.out.println("LISTAAAAA");
     return "publications/list";
 }
+    @GetMapping("/{id}")
+    public String viewPublication(@PathVariable Long id, Model model) {
+        Publication publication = publicationService.findById(id);
+        if (publication == null) {
+            return "redirect:/publications";
+        }
+        model.addAttribute("publication", publication);
+        return "publications/detail";
+    }
 
     @GetMapping("/put/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
