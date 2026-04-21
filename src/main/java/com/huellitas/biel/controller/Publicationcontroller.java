@@ -7,6 +7,7 @@ import com.huellitas.biel.service.PublicationService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -50,7 +51,7 @@ public class PublicationController {
         }
 
         publication.setCreatedAt(LocalDateTime.now());
-        publication.setImage(file.getBytes());
+        publication.setImage(file.getBytes());  
         publicationService.save(publication);
 
         return "redirect:/publications";
@@ -109,5 +110,16 @@ public String listPublications(Model model) {
         publicationService.delete(id);
         return "redirect:/publications";
     }
+
+    @GetMapping("/image/{id}")
+    @ResponseBody
+    public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
+        Publication pub = publicationService.findById(id);
+
+        return ResponseEntity
+            .ok()
+            .header("Content-Type", "image/jpeg") // o image/png
+            .body(pub.getImage());
+}
 
 }

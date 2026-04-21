@@ -19,8 +19,7 @@
         <div class="col-md-4 mb-4" th:each="pub : ${publications}">
             <div class="card shadow-sm">
 
-                <img th:if="${pub.imagenUrl != null}"
-                     th:src="${pub.imagenUrl}"
+                <img th:src="@{/publications/image/{id}(id=${pub.id})}"
                      class="card-img-top"
                      style="height:250px; object-fit:cover;">
 

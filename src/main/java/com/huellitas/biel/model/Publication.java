@@ -48,7 +48,6 @@ public class Publication {
     private LocalDateTime createdAt;
     private String neighborhood;
     private String location;
-    private String imagenUrl;
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] image;
