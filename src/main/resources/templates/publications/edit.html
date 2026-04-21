@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Estoy en edit</h1>
-     <form th:action="@{/publications/put/{id}(id=${publication.id})}" th:object="${publication}" method="post">
+     <form th:action="@{/publications/put/{id}(id=${publication.id})}" enctype="multipart/form-data" th:object="${publication}" method="post">
 
         <div class="mb-3">
             <label>Tipo</label>
@@ -68,8 +68,8 @@
         </div>
 
         <div class="mb-3">
-            <label>URL Imagen</label>
-            <input type="text" class="form-control" th:field="*{imagenUrl}">
+            <label>Imagen</label>
+            <input type="file" class="form-control" name="imageFile">
         </div>
 
         <div class="mb-3">

@@ -87,9 +87,10 @@ public String listPublications(Model model) {
     @PostMapping("/put/{id}")
     public String updatePublication(
             @PathVariable Long id,
+            @RequestParam("imageFile") MultipartFile file,
             @Valid @ModelAttribute Publication publication,
             BindingResult result,
-            Model model) {
+            Model model) throws IOException {
 
         if (result.hasErrors()) {
             model.addAttribute("types", PublicationType.values());
@@ -99,7 +100,8 @@ public String listPublications(Model model) {
         }
 
         publication.setId(id);
-        publicationService.update(publication);
+        publication.setImage(file.getBytes());
+        publicationService.update(publication);     
         System.out.println("UPDATEEEEE");
 
         return "redirect:/publications";
