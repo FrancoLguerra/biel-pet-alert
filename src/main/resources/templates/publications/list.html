@@ -18,10 +18,15 @@
 
         <div class="col-md-4 mb-4" th:each="pub : ${publications}">
             <div class="card shadow-sm">
+                <a th:href="@{/publications/detail/{id}(id=${pub.id})}">
 
-                <img th:src="@{/publications/image/{id}(id=${pub.id})}"
-                     class="card-img-top"
-                     style="height:250px; object-fit:cover;">
+                    <img th:src="@{/publications/image/{id}(id=${pub.id})}"
+                    class="card-img-top"
+                    style="height:250px; object-fit:cover;"
+                    th:if="${pub.image != null}"
+                    th:alt="${pub.petName}">
+                </a>
+                     
 
                 <div class="card-body">
 
@@ -59,7 +64,7 @@
                         allowfullscreen
                         th:src="'https://www.google.com/maps?q=' + ${pub.latitude} + ',' + ${pub.longitude} + '&output=embed'">
                     </iframe>
-                    <a th:href="@{/publications/{id}(id=${pub.id})}"
+                    <a th:href="@{/publications/detail/{id}(id=${pub.id})}"
                        class="btn btn-outline-primary btn-sm">
                         Ver detalle
                     </a>
