@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 @Controller
@@ -36,8 +38,9 @@ public class PublicationController {
     @PostMapping
     public String savePublication(
             @Valid @ModelAttribute Publication publication,
+            @RequestParam("imageFile") MultipartFile file,
             BindingResult result,
-            Model model) {
+            Model model) throws IOException {
 
         if (result.hasErrors()) {
              System.out.println("HAY ERRORES");
@@ -47,7 +50,7 @@ public class PublicationController {
         }
 
         publication.setCreatedAt(LocalDateTime.now());
-     
+        publication.setImage(file.getBytes());
         publicationService.save(publication);
 
         return "redirect:/publications";

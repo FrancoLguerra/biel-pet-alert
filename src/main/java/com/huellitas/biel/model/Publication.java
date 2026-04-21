@@ -49,6 +49,9 @@ public class Publication {
     private String neighborhood;
     private String location;
     private String imagenUrl;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] image;
     private Double latitude;
     private Double longitude;
 

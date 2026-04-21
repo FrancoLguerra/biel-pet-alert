@@ -12,7 +12,7 @@
 <div class="container mt-4">
     <h2>Nueva Publicación</h2>
 
-    <form th:action="@{/publications}" th:object="${publication}" method="post">
+    <form th:action="@{/publications}" th:object="${publication}" method="post" enctype="multipart/form-data">
 
         <div class="mb-3">
             <label>Tipo</label>
@@ -75,8 +75,8 @@
         </div>
 
         <div class="mb-3">
-            <label>URL Imagen</label>
-            <input type="text" class="form-control" th:field="*{imagenUrl}">
+            <label>Imagen</label>
+            <input type="file" class="form-control" name="imageFile" th:field="*{image}">
         </div>
 
         <div class="mb-3">
