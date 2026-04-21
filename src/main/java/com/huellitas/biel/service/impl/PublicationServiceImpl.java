@@ -2,6 +2,7 @@ package com.huellitas.biel.service.impl;
 
 import com.huellitas.biel.model.Publication;
 import com.huellitas.biel.model.enums.PublicationStatus;
+import com.huellitas.biel.model.enums.PublicationType;
 import com.huellitas.biel.repository.PublicationRepository;
 import com.huellitas.biel.service.PublicationService;
 import lombok.RequiredArgsConstructor;
@@ -50,5 +51,13 @@ public class PublicationServiceImpl implements PublicationService {
         return publicationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Publication not found"));
     }
+
+        @Override
+         public List<Publication> findByType(PublicationType type) {
+        return publicationRepository.findByTypeAndStatus(type, PublicationStatus.ACTIVE);
+}
+        
+
+        
     
 }

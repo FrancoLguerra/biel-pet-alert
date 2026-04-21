@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.huellitas.biel.model.Publication;
 import com.huellitas.biel.model.enums.PublicationStatus;
+import com.huellitas.biel.model.enums.PublicationType;
 
 public interface PublicationRepository extends JpaRepository<Publication, Long> {
 
     List<Publication> findBystatus(PublicationStatus status);
+
+    List<Publication> findByTypeAndStatus(PublicationType type, PublicationStatus active);
     
 }

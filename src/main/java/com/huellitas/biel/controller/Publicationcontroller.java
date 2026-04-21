@@ -16,8 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -141,4 +139,13 @@ public String listPublications(Model model) {
             .body(pub.getImage());
 }
 
+
+    //filtro por type
+    @GetMapping("/filter")
+    public String filterPublications(@RequestParam("type") PublicationType type, Model model) {
+        model.addAttribute("publications", publicationService.findByType(type));
+        model.addAttribute("selectedType", type);
+        return "publications/list";
+    }
+    
 }

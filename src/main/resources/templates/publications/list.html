@@ -15,6 +15,13 @@
     </a>
 
     <div class="row">
+        <select name="filter" id="filter" onchange="location = this.value;" class="form-select mb-4" >
+            <option value="">Filtrar por tipo</option>
+            <option value="/publications">Todos</option>
+            <option value="/publications/filter?type=LOST">Perdido</option>
+            <option value="/publications/filter?type=FOUND">Encontrado</option>
+            <option value="/publications/filter?type=ADOPTION">En adopción</option>
+        </select>
 
         <div class="col-md-4 mb-4" th:each="pub : ${publications}">
             <div class="card shadow-sm">
