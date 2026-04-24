@@ -147,5 +147,7 @@ public String listPublications(Model model) {
         model.addAttribute("selectedType", type);
         return "publications/list";
     }
+
+    
     
 }
